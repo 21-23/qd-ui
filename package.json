@@ -1,0 +1,41 @@
+{
+  "name": "qd-ui",
+  "version": "1.0.0",
+  "description": "Components for *qd",
+  "main": "webpack.config.base.js",
+  "scripts": {
+    "storybook": "start-storybook -p 9001 -c .storybook"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/21-23/qd-ui.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/21-23/qd-ui/issues"
+  },
+  "homepage": "https://github.com/21-23/qd-ui#readme",
+  "devDependencies": {
+    "@storybook/addon-knobs": "^3.2.17",
+    "@storybook/addon-options": "^3.2.17",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "preact": "^8.2.7",
+    "preact-compat": "^3.17.0",
+    "react-fontawesome": "^1.6.1",
+    "styled-jsx": "^2.2.1"
+  },
+  "dependencies": {
+    "@storybook/react": "^3.2.17",
+    "preact-virtual-list": "^0.3.1"
+  },
+  "peerDependencies": {
+    "preact": "^8.2.7",
+    "react-fontawesome": "^1.6.1",
+    "styled-jsx": "^2.2.1"
+  }
+}
