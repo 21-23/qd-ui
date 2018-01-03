@@ -4,7 +4,8 @@
   "description": "Components for *qd",
   "main": "webpack.config.base.js",
   "scripts": {
-    "storybook": "start-storybook -p 9001 -c .storybook"
+    "storybook:serve": "start-storybook -p 9001 -c .storybook",
+    "storybook:build": "build-storybook -c .storybook -o .build"
   },
   "repository": {
     "type": "git",
