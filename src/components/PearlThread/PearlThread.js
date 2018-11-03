@@ -103,6 +103,7 @@ const PearlThread = ({ itemsCount, activeIndex = 0, activeTitle, onPearlClick })
             <div className="pearls-container">
                 { new Array(itemsCount).fill(0).map((_, index) => (
                     <Pearl
+                        key={index}
                         isPast={index < activeIndex}
                         title={activeIndex === index ? activeTitle : null}
                         index={index}
