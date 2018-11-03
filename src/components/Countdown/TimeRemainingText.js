@@ -1,25 +1,43 @@
 import React, { Component } from 'react';
+
+import { Context } from './Canvas';
 import { formatScoreTime } from '../../formatters/score';
 
 const COMPONENT_SIZE_TO_FONT_SIZE_RATIO = 4;
 
 class TimeRemainingText extends Component {
-    update() {
-        this.fontSize = this.props.size / COMPONENT_SIZE_TO_FONT_SIZE_RATIO;
-
-        this.props.ctx.font = `${this.fontSize}px sans-serif`;
-        this.props.ctx.fillStyle = this.props.textFillColor;
-        this.props.ctx.textBaseline = 'middle';
-
-        this.text = formatScoreTime(this.props.timeRemaining);
-        const { width } = this.props.ctx.measureText(this.text);
-
-        this.textX = (this.props.size - width) / 2;
-        this.textY = this.props.size / 2;
+    static render(ctx, props) {
+        const renderOptions = this.update(props);
+        this.renderToCanvas(ctx, renderOptions);
     }
 
-    renderToCanvas() {
-        this.props.ctx.fillText(this.text, this.textX, this.textY);
+    static update(props) {
+        const fontSize = props.size / COMPONENT_SIZE_TO_FONT_SIZE_RATIO;
+        const text = formatScoreTime(props.timeRemaining);
+        
+        return {
+            fontSize,
+            text,
+            size: props.size,
+            textFillColor: props.textFillColor,
+        }
+    }
+
+    static renderToCanvas(ctx, renderOptions) {
+        ctx.font = `${renderOptions.fontSize}px sans-serif`;
+        ctx.fillStyle = renderOptions.textFillColor;
+        ctx.textBaseline = 'middle';
+
+        const { width } = ctx.measureText(renderOptions.text);
+
+        const textX = (renderOptions.size - width) / 2;
+        const textY = renderOptions.size / 2;
+        
+        ctx.fillText(renderOptions.text, textX, textY);
+    }
+
+    render() {
+        return null;
     }
 }
 

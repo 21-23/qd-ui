@@ -1,30 +1,45 @@
 import React, { Component } from 'react';
 
 class Arc extends Component {
-    update() {
-        this.center = this.props.size / 2;
-        this.strokeSize = this.props.size * this.props.strokeSize;
-        this.radius = (this.props.size - this.strokeSize) / 2;
-
-        this.props.ctx.lineWidth = this.strokeSize;
-        this.props.ctx.strokeStyle = this.props.color;
-        this.props.ctx.lineCap = 'round';
+    static render(ctx, props) {
+        this.ctx = ctx;
+        
+        const renderOptions = this.update(props);
+        this.renderToCanvas(ctx, renderOptions);
     }
 
-    renderToCanvas() {
-        const { ctx } = this.props;
+    static update(props) {
+        const strokeSize = props.size * props.strokeSize;
+
+        return {
+            strokeSize,
+            center: props.size / 2,
+            radius: (props.size - strokeSize) / 2,
+            color: props.color,
+            progress: props.progress,
+        };
+    }
+
+    static renderToCanvas(ctx, renderOptions) {
+        ctx.lineWidth = renderOptions.strokeSize;
+        ctx.strokeStyle = renderOptions.color;
+        ctx.lineCap = 'round';
 
         ctx.beginPath();
 
         ctx.arc(
-            this.center,
-            this.center,
-            this.radius, -Math.PI / 2,
-            Math.PI * 2 * this.props.progress - Math.PI / 2,
+            renderOptions.center,
+            renderOptions.center,
+            renderOptions.radius, -Math.PI / 2,
+            Math.PI * 2 * renderOptions.progress - Math.PI / 2,
         );
         ctx.stroke();
 
         ctx.closePath();
+    }
+
+    render() {
+        return null;
     }
 }
 

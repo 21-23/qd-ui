@@ -9,58 +9,65 @@ import * as Colors from './countdown-color-palette';
 const TIMER_TICK_INTERVAL = 1000;
 
 class Countdown extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            progress: props.timeRemaining / props.timeAmount,
+        };
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        console.log(props.timeAmount, props.timeRemaining);
+        return {
+            ...state,
+            ...props,
+        };
+    }
+
     render() {
+        console.log(this.state.progress);
+
         return (
-            <Canvas ref={canvas => this.canvas = canvas} size={this.props.size}>
+            <Canvas ref={canvas => this.canvas = canvas} size={this.state.size}>
                 <Arc
-                    color={this.props.arcColor}
-                    strokeSize={this.props.strokeSize}
+                    color={this.state.arcColor}
+                    strokeSize={this.state.strokeSize}
                     progress={1}
                 />
                 <Arc
                     ref={arc => this.progressArc = arc}
-                    color={this.props.remainingTimeArcColor}
-                    strokeSize={this.props.strokeSize}
-                    progress={this.props.timeRemaining / this.props.timeAmount}
+                    color={this.state.remainingTimeArcColor}
+                    strokeSize={this.state.strokeSize}
+                    progress={this.state.progress}
                 />
                 <TimeRemainingText
-                    timeRemaining={this.props.timeRemaining}
-                    size={this.props.size}
-                    textFillColor={this.props.textFillColor}
+                    timeRemaining={this.state.timeRemaining}
+                    size={this.state.size}
+                    textFillColor={this.state.textFillColor}
                 />
             </Canvas>
         );
     }
 
-    componentDidUpdate(prevProps) {
-        if (this.props.timeRemaining === prevProps.timeRemaining) {
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.timeRemaining === this.props.timeRemaining) {
             return;
         }
 
-        if (this.props.timeRemaining === this.props.timeAmount) {
-            return;
-        }
+        this.animation && this.animation.stopAnimation();
 
-        const timeRemainingDiff = (prevProps.timeRemaining - this.props.timeRemaining) * 1000;
-        let duration;
-
-        if (timeRemainingDiff > 0 && timeRemainingDiff < TIMER_TICK_INTERVAL) {
-            duration = timeRemainingDiff
-        } else {
-            duration = TIMER_TICK_INTERVAL;
-        }
-
-        const { timeAmount } = this.props;
-
-        const from = prevProps.timeRemaining / timeAmount;
-        const to = this.props.timeRemaining / timeAmount;
-
-        this.animation = new Animation({ from, to, duration });
-
-        this.animation.animate(v => {
-            this.progressArc.props.progress = v;
-            this.canvas._render();
+        this.animation = new Animation({
+            from: prevState.progress,
+            to: this.props.timeRemaining / this.props.timeAmount,
+            duration: TIMER_TICK_INTERVAL,
         });
+
+        this.animation.animate((v) => {
+            this.setState({
+                progress: v,
+            });
+        })
     }
 
     componentWillUnmount() {
