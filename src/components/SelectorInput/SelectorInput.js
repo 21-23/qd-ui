@@ -13,16 +13,18 @@ class SelectorInput extends Component {
         } = this.props;
 
         return (
-            <input
-                type="text"
-                onInput={e => onInput(e.target.value)}
-                disabled={disabled}
-                placeholder={placeholder}
-                value={value}
-                maxLength={maxLength}
-                ref={this.refInput}
-            >
-                <style jsx>{`
+            <div>
+                <input
+                    type="text"
+                    onInput={e => onInput(e.target.value)}
+                    disabled={disabled}
+                    placeholder={placeholder}
+                    defaultValue={value}
+                    maxLength={maxLength}
+                    ref={this.refInput}
+                    key="input"
+                />
+                <style key="style" jsx>{`
                     input {
                         width: 100%;
                         box-sizing: border-box;
@@ -53,7 +55,7 @@ class SelectorInput extends Component {
                         color: ${Colors.PLACEHOLDER};
                     }
                 `}</style>
-            </input>
+            </div>
         );
     }
 
