@@ -1,6 +1,6 @@
 {
   "name": "qd-ui",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Components for *qd",
   "main": "webpack.config.base.js",
   "scripts": {
