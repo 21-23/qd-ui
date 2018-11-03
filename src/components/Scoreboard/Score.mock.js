@@ -15,6 +15,14 @@ export default {
             correct: 'partial',
             code: '.select-not-all',
             time: 90
-        }
+        },
+        {
+            participantId: 'dsda-ffd-zxc',
+            displayName: 'Black Swan',
+            aggregateScore: 125,
+            correct: 'partial',
+            code: '.some-very-very long selector > with really really long > nested > Selector',
+            time: 90
+        },
     ]
 }

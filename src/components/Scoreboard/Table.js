@@ -1,96 +1,125 @@
 import _ from 'lodash';
-import React from 'react';
-import VirtualList from 'preact-virtual-list';
+import React, { Component } from 'react';
+import VirtualList from 'react-tiny-virtual-list';
 
 const ROW_HEIHGT = 35;
 
-const renderCells = (columns, item, rowIndex) => columns.map((column) => {
-    const format = column.format || _.identity;
-    const value = column.isIndex ? (rowIndex + 1) : format(item[column.key]);
+export class Table extends Component {
+    state = {
+        height: document.body.offsetHeight,
+    }
 
-    return <div className={`cell ${column.key}`}>{ value }</div>
-});
+    static defaultProps = {
+        isActiveRow: _.constant(false),
+    }
 
+    _onResize = () => {
+        this.setState({
+            height: this.container.offsetHeight,
+        });
+    }
 
-function renderRow(columns, item, rowIndex, isActiveRow) {
-    const cells = renderCells(columns, item, rowIndex);
+    componentDidMount() {
+        this._onResize();
+        window.addEventListener('resize', this._onResize);
+    }
 
-    return (
-        <div className={`row ${isActiveRow(item) ? '-active' : ''}`}>
-            { cells }
-        </div>
-    );
-}
+    componentWillUnmount() {
+        window.removeEventListener('resize', this._onResize);
+    }
 
-export const Table = ({ columns, items, isActiveRow = _.constant(false) }) => {
-    return (
-        <div className="table-wrapper">
-            <div className="row -heading">
-                { columns.map(column => <div className={`cell ${column.key}`}>{ column.title}</div>)}
+    _renderCells = (columns, item, rowIndex) => columns.map((column) => {
+        const format = column.format || _.identity;
+        const value = column.isIndex ? (rowIndex + 1) : format(item[column.key]);
+
+        return <div className={`cell ${column.key}`}>{ value }</div>
+    });
+
+    _renderRow = ({ index, style }) => {
+        const { isActiveRow, columns } = this.props;
+        const item = this.props.items[index];
+
+        const cells = this._renderCells(columns, item, index);
+
+        return (
+            <div className={`row ${isActiveRow(item) ? '-active' : ''}`} style={style} key={index}>
+                { cells }
             </div>
+        );
+    };
 
-            <VirtualList
-                data={items}
-                className="table"
-                renderRow={(item) =>
-                    renderRow(columns, item, items.indexOf(item), isActiveRow)
-                }
-                rowHeight={ROW_HEIHGT}
-                overscanCount={10}
-            />
+    render() {
+        const { columns, items } = this.props;
 
-            <style jsx global>{`
-                .table-wrapper {
-                    position: relative;
-                    padding-top: ${ROW_HEIHGT}px;
-                    height: 100%;
-                    overflow: hidden;
-                }
+        return (
+            <div className="table-wrapper" ref={node => this.container = node}>
+                <div className="row -heading">
+                    { columns.map(column => <div className={`cell ${column.key}`} key={column.key}>{ column.title}</div>)}
+                </div>
 
-                .table {
-                    height: 100%;
-                    overflow: auto;
-                }
+                <VirtualList
+                    data={items}
+                    className="table"
+                    width="100%"
+                    height={this.state.height}
+                    itemSize={ROW_HEIHGT}
+                    itemCount={items.length}
+                    renderItem={this._renderRow}
+                />
 
-                .row {
-                    height: ${ROW_HEIHGT}px;
-                    white-space: nowrap;
-                    width: 100%;
-                    color: white;
-                }
+                <style jsx global>{`
+                    .table-wrapper {
+                        position: relative;
+                        padding-top: ${ROW_HEIHGT}px;
+                        height: 100%;
+                        overflow: hidden;
+                    }
 
-                .row.-active {
-                    color: #87C736;
-                }
+                    .table {
+                        height: 100%;
+                        overflow: auto;
+                    }
 
-                .row.-heading {
-                    position: absolute;
-                    top: 0;
-                }
+                    .row {
+                        height: ${ROW_HEIHGT}px;
+                        white-space: nowrap;
+                        width: 100%;
+                        color: white;
+                    }
 
-                .row.-heading .cell {
-                    border-bottom: 3px solid #3C8A82;
-                }
+                    .row.-active {
+                        color: #87C736;
+                    }
 
-                .cell {
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    display: inline-block;
-                    box-sizing: border-box;
-                    padding: 5px;
-                    text-align: center;
-                    border-bottom: 1px solid #3C8A82;
-                }
+                    .row.-heading {
+                        position: absolute;
+                        top: 0;
+                    }
 
-                .cell:first-child {
-                    text-align: left;
-                }
+                    .row.-heading .cell {
+                        border-bottom: 3px solid #3C8A82;
+                    }
 
-                .cell:last-child {
-                    text-align: right;
-                }
-            `}</style>
-        </div>
-    );
+                    .cell {
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: inline-block;
+                        box-sizing: border-box;
+                        padding: 5px;
+                        text-align: center;
+                        border-bottom: 1px solid #3C8A82;
+                    }
+
+                    .cell:first-child {
+                        text-align: left;
+                    }
+
+                    .cell:last-child {
+                        text-align: right;
+                    }
+                `}</style>
+            </div>
+        );
+    }
 }

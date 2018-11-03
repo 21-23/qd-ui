@@ -3,7 +3,7 @@ require('../src/components/Countdown/Countdown.story.js');
 require('../src/components/SelectorInput/SelectorInput.story.js');
 require('../src/components/MarkupRenderer/MarkupRenderer.story.js');
 require('../src/components/BannedCharacters/BannedCharacters.story.js');
-// require('../src/components/Scoreboard/Scoreboard.story.js');
+require('../src/components/Scoreboard/Scoreboard.story.js');
 require('../src/components/PuzzleTitle/PuzzleTitle.story.js');
 require('../src/components/RoundStartCountdown/RoundStartCountdown.story.js');
 require('../src/components/PearlThread/PearlThread.story.js');
