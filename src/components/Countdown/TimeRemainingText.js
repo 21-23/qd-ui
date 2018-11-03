@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import React, { Component } from 'react';
 import { formatScoreTime } from '../../formatters/score';
 
 const COMPONENT_SIZE_TO_FONT_SIZE_RATIO = 4;

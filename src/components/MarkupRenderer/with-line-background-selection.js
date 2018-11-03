@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import React from 'react';
 
 function resolveBackgroundColor({ isSelected, shouldBeSelected }, colorPalette) {
     if (shouldBeSelected && !isSelected) {

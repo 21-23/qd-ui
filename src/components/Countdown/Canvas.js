@@ -1,4 +1,4 @@
-import { h, Component, cloneElement } from 'preact';
+import React, { Component, cloneElement } from 'react';
 
 class Canvas extends Component {
     constructor(props) {

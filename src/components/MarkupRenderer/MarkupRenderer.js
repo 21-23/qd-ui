@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import React, { Component } from 'react';
 
 import { Line } from './Line';
 import { withDotSelectionIndicator, DotSelectionIndicatorColors } from './with-dot-selection-indicator';

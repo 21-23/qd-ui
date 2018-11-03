@@ -1,12 +1,6 @@
 const path = require('path');
 
 const config = {
-    resolve: {
-        alias: {
-            react: 'preact-compat',
-            'react-dom': 'preact-compat',
-        },
-    },
     module: {
         rules: [{
             test: /\.js$/,

@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { h } from 'preact';
+import React from 'react';
 import VirtualList from 'preact-virtual-list';
 
 const ROW_HEIHGT = 35;

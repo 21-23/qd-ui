@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import React from 'react';
 
 const backgroundImage = require('../../assets/images/waitscreen.jpg');
 const paperImage = require('../../assets/images/paper.png');

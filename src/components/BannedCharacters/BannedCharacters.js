@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import React from 'react';
 import classNames from 'classnames';
 import { DisplayConstants, Colors } from './banned-characters-style-constants';
 

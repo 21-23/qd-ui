@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import React from 'react';
 
 import { Attribute } from './Attribute';
 import { indentString } from './markup-renderer-helpers';

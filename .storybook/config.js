@@ -1,5 +1,6 @@
-import 'babel-polyfill';
-import { h } from 'preact';
+import '@babel/polyfill';
+
+import React from 'react';
 import { configure, addDecorator } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { setOptions } from '@storybook/addon-options';

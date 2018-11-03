@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import React, { Component } from 'react';
 
 import * as Colors from './selector-input-color-palette';
 

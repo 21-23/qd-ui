@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { h, Component } from 'preact';
+import React, { Component } from 'react';
 import Icon from 'react-fontawesome';
 
 import { winningGreen, superLightGreen } from './color-palette'

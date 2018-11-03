@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import React from 'react';
 import Icon from 'react-fontawesome';
 
 const Button = ({ iconLeft, iconRight, text, disabled, onClick }) => (

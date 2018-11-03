@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { h, Component } from 'preact';
+import React, { Component } from 'react';
 import classNames from 'classnames';
 import Icon from 'react-fontawesome';
 import { Colors } from './pearl-thread-style-constants';

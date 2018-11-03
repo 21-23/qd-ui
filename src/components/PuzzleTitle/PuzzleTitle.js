@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import React from 'react';
 
 const textShadow = '0 1px 4px rgba(0, 0, 0, 0.15)';
 const margin = '0 0.3em 0 0;';
