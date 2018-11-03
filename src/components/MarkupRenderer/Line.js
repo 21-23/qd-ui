@@ -19,19 +19,20 @@ const OpeningTag = ({ tagName, attributes, selfClosing, colors, text }) => (
         <span style={{ color: colors.tagName }}>
             { tagName }
         </span>
-        { attributes.map(attr => <Attribute {...attr} colors={colors} />) }
+        { attributes.map((attr, index) => <Attribute {...attr} colors={colors} key={index} />) }
         { selfClosing ? ' />' : '>' }
         { text }
     </span>
 );
 
-const Line = ({ indentLevel, indentSize, tagName, attributes, text, closing, selfClosing, empty, colors }) => (
+const Line = ({ indentLevel, indentSize, tagName, attributes, text, closing, selfClosing, empty, colors, id }) => (
     <div className="line">
         <span>{indentString(indentLevel, indentSize)}</span>
         { closing ?
             <ClosingTag
                 tagName={tagName}
                 colors={colors}
+                key={`${id}-closing`}
             /> :
             <OpeningTag
                 tagName={tagName}
@@ -39,6 +40,7 @@ const Line = ({ indentLevel, indentSize, tagName, attributes, text, closing, sel
                 selfClosing={selfClosing}
                 text={text}
                 colors={colors}
+                key={`${id}-opening`}
             />
         }
 
@@ -46,6 +48,7 @@ const Line = ({ indentLevel, indentSize, tagName, attributes, text, closing, sel
             <ClosingTag
                 tagName={tagName}
                 colors={colors}
+                key={`${key}-closing`}
             /> :
             null
         }

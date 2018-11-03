@@ -5,7 +5,7 @@ import { withDotSelectionIndicator, DotSelectionIndicatorColors } from './with-d
 
 import { EditorColors } from './markup-renderer-color-palette';
 
-import { transform, traverse } from './markup-renderer-helpers';
+import { traverse } from './markup-renderer-helpers';
 
 class MarkupRenderer extends Component {
     state = {
@@ -24,9 +24,11 @@ class MarkupRenderer extends Component {
     render() {
         const { LineComponent } = this.props;
 
-        const lines = this.state.lines.map(line => (
+        const lines = this.state.lines.map((line, index) => (
             <LineComponent
                 {...line}
+                key={index}
+                id={index}
                 indentSize={this.props.indentSize}
                 colors={this.props.colors}
                 isSelected={this.props.actualSelection.indexOf(line.qdId) !== -1}

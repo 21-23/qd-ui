@@ -1,14 +1,13 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { text, array, number, withKnobsOptions } from '@storybook/addon-knobs';
 
 import { MarkupRenderer } from './MarkupRenderer';
-import { EditorColors } from './markup-renderer-color-palette';
 
 import { Line } from './Line';
 import { withDotSelectionIndicator, DotSelectionIndicatorColors } from './with-dot-selection-indicator';
 import { withLineBackgroundSelection, LineBackgroundSelectionColors } from './with-line-background-selection';
 
-import { text, array, object, number } from '@storybook/addon-knobs';
 
 const taskSource = `
 <main data-qdid="1">
@@ -21,6 +20,7 @@ const taskSource = `
 `;
 
 storiesOf('MarkupRenderer', module)
+    .addDecorator(withKnobsOptions({ escapeHTML: false }))
     .add('default', () => (
         <MarkupRenderer
             source={text('source', taskSource)}
