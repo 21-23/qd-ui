@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Layout = ({ children }) => (
-    <div class="react-root">
+    <div className="react-root">
         { children }
         <style jsx global>{`
             html {

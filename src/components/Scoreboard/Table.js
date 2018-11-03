@@ -31,7 +31,7 @@ export const Table = ({ columns, items, isActiveRow = _.constant(false) }) => {
 
             <VirtualList
                 data={items}
-                class="table"
+                className="table"
                 renderRow={(item) =>
                     renderRow(columns, item, items.indexOf(item), isActiveRow)
                 }
