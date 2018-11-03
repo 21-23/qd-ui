@@ -2,7 +2,7 @@ import React from 'react';
 
 const CorrectSolution = ({ solution }) => (
     <div>
-        <label for="solution-visibility-toggle">Solution</label>
+        <label htmlFor="solution-visibility-toggle">Solution</label>
         <input type="checkbox" id="solution-visibility-toggle" />
         <span className="solution">{ solution }</span>
 
