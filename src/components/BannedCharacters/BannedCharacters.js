@@ -22,8 +22,6 @@ const BannedCharacters = ({ bannedCharacters = [], highlightedCharacters = [] })
         );
     }
 
-    console.log(Colors.LABEL);
-
     return (
         <div className="banned-characters">
             <span className="label">Banned chars: </span>

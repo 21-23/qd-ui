@@ -18,7 +18,6 @@ class Countdown extends Component {
     }
 
     static getDerivedStateFromProps(props, state) {
-        console.log(props.timeAmount, props.timeRemaining);
         return {
             ...state,
             ...props,
@@ -26,7 +25,6 @@ class Countdown extends Component {
     }
 
     render() {
-        console.log(this.state.progress);
 
         return (
             <Canvas ref={canvas => this.canvas = canvas} size={this.state.size}>
