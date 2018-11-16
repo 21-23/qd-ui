@@ -7,7 +7,7 @@ class TimeRemainingText extends Component {
     update() {
         this.fontSize = this.props.size / COMPONENT_SIZE_TO_FONT_SIZE_RATIO;
 
-        this.props.ctx.font = `${this.fontSize}px sans-serif`;
+        this.props.ctx.font = `${this.fontSize}px Roboto, sans-serif`;
         this.props.ctx.fillStyle = this.props.textFillColor;
         this.props.ctx.textBaseline = 'middle';
 
