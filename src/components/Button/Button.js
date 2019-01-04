@@ -3,9 +3,9 @@ import Icon from 'react-fontawesome';
 
 const Button = ({ iconLeft, iconRight, text, disabled, onClick }) => (
     <button onClick={onClick} disabled={disabled}>
-        { iconLeft ? <Icon name={iconLeft} /> : null }
-        <span>{ text }</span>
-        { iconRight ? <Icon name={iconRight} /> : null }
+        {iconLeft ? <Icon name={iconLeft} /> : null}
+        <span>{text}</span>
+        {iconRight ? <Icon name={iconRight} /> : null}
 
         <style jsx>{`
         button {
@@ -24,8 +24,8 @@ const Button = ({ iconLeft, iconRight, text, disabled, onClick }) => (
         }
 
         span {
-            margin-left: 5px;
-            margin-right: 5px;
+            margin-left: 10px;
+            margin-right: 10px;
         }
 
         span:first-child {

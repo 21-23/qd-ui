@@ -23,20 +23,20 @@ const BannedCharacters = ({ bannedCharacters = [], highlightedCharacters = [] })
     }
 
     return (
-        <div class="banned-characters">
-            <span class="label">Banned chars: </span>
-            { content }
+        <div className="banned-characters">
+            <span className="label">Banned chars: </span>
+            {content}
 
             <style jsx>{`
                 .banned-characters {
                     display: inline-flex;
                     align-items: center;
                     min-height: 35px;
+                    font-family: 'Roboto', sans-serif;
                 }
 
                 .label {
-                    font-weight: 600;
-                    font-family: sans-serif;
+                    font-weight: lighter;
                     font-size: ${DisplayConstants.FONT_SIZE}px;
                     color: ${Colors.LABEL};
                     display: inline-block;
@@ -54,14 +54,14 @@ const BannedCharacter = (char, isHighlighted) => {
 
     return (
         <div className={bannedCharacterClasses}>
-            { char }
+            {char}
 
             <style jsx>{`
             .banned-character {
                 box-sizing: border-box;
                 font-family: monospace;
                 font-weight: 600;
-                font-size: ${DisplayConstants.FONT_SIZE}px;
+                font-size: 16px;
                 color: ${Colors.CHARACTER};
                 margin: 0 5px;
                 background-color: ${Colors.CHARACTER_BACKGROUND};
@@ -69,7 +69,7 @@ const BannedCharacter = (char, isHighlighted) => {
                 min-height: 25px;
                 border-radius: 4px;
                 text-align: center;
-                display: inline-flex;
+                display: flex;
                 align-items: center;
                 justify-content: center;
                 transition: background 0.1s, transform 150ms;

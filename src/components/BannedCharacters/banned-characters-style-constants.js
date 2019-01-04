@@ -1,5 +1,5 @@
 export const Colors = {
-    LABEL: '#b3decc',
+    LABEL: '#badece',
     CHARACTER: '#ffffff',
     CHARACTER_BACKGROUND: '#3a706a',
     HIGHLIGHTED_CHARACTER_BACKGROUND: '#775957',
@@ -7,6 +7,6 @@ export const Colors = {
 };
 
 export const DisplayConstants = {
-    FONT_SIZE: 16,
+    FONT_SIZE: 24,
     HIGHLIGHTED_CHAR_SCALE_COEFFICIENT: 1.5,
 };

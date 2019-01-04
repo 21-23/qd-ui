@@ -1,8 +1,9 @@
 import { h } from 'preact';
+import { CONTENT_MAX_WIDTH } from '../constants/layout-constants';
 
 const Layout = ({ children }) => (
     <div class="react-root">
-        { children }
+        {children}
         <style jsx global>{`
             html {
                 font-size: 16px;
@@ -13,7 +14,7 @@ const Layout = ({ children }) => (
             }
 
             body {
-                margin: 0;
+                margin: 0 auto;
                 height: 100%;
             }
 
@@ -23,6 +24,11 @@ const Layout = ({ children }) => (
                 flex-direction: column;
                 align-items: stretch;
                 height: 100%;
+            }
+
+            .content-container {
+                max-width: ${CONTENT_MAX_WIDTH}px;
+                margin: 0 auto;
             }
         `}</style>
     </div>
