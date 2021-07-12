@@ -12,7 +12,7 @@ storiesOf('AuthButton', module)
     ))
     .add('local', () => (
         <AuthButton
-            path="/auth/qd-auto"
+            path="/auth/qdauto"
             icon="database"
         />
     ));
